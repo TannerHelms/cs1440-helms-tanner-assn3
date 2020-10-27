@@ -1,7 +1,7 @@
 import MenuOption
 
 
-class Menu(): 
+class Menu:
     def __init__(self, header):
         """Menu constructor"""
         self.__m_header = header
@@ -28,7 +28,7 @@ class Menu():
 
     def getOption(self, optionIndex):
         option = None
-        if optionIndex >= 0 and optionIndex < self.getOptionCount():
+        if 0 <= optionIndex < self.getOptionCount():
             option = self.__m_options[optionIndex]
         return option
 
