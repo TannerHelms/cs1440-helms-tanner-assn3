@@ -34,5 +34,6 @@ class NumberSet:
         return self.__numberSet[self.__index]
         pass
 
-    def print(self):
-        print(self.__numberSet)
+    def GetValues(self):
+        self.randomize()
+        return self.__numberSet
