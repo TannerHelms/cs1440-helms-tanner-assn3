@@ -13,7 +13,7 @@ class UserInterface:
         pass
 
     def run(self):
-        print(f"Welcome to the Bingo! Deck Generator\n")
+        print("Welcome to the Bingo! Deck Generator")
 
         menu = Menu.Menu("Main")
         menu.addOption("C", "Create a new deck")
