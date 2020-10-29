@@ -1,5 +1,4 @@
 import os
-from colorama import Fore, Style, init
 try:
     import Deck
 except:
