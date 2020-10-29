@@ -1,10 +1,53 @@
 # Tests the Menu and MenuOption Classes
 
 import unittest
+from dataclasses import dataclass
+
 import Menu
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 class TestMenu(unittest.TestCase):
+    def test_menu(self):
+        @dataclass
+        class TestCase:
+            name: str
+            options: {}
+
+        testcases = [
+            TestCase(
+                name="Deck",
+                options={
+                    "A": "Test option A",
+                    "B": "Test option B",
+                    "C": "Test option C",
+                    "D": "Test option D",
+                    "E": "Test option E"
+                }
+            ),
+            TestCase(
+                name="",
+                options={}
+            )
+        ]
+
+        for case in testcases:
+            print(f"Testing Menu {case.name}:", end='')
+            menu = Menu.Menu(case.name)
+            self.assertEqual(case.name, menu.getHeader())
+            for option in case.options:
+                menu.addOption(option, case.options[option])
+            for i in range(0, len(case.options)):
+                MenuOption = menu.getOption(i)
+                self.assertEqual(MenuOption.getDescription(), case.options.get(MenuOption.getCommand()))
+            self.assertIsNone(menu.getOption(-1))
+            self.assertEqual(len(case.options), menu.getOptionCount())
+            print(" Pass")
+
+
+class TestMenu2(unittest.TestCase):
     def setUp(self):
         self.menu = Menu.Menu("Deck")
         self.menu.addOption("A", "Test option A")
@@ -51,7 +94,3 @@ class TestMenu(unittest.TestCase):
         self.assertNotEqual(self.menu.getOptionCount(), 0)
         self.assertEqual(self.menu1.getOptionCount(), 0)
         self.assertNotEqual(self.menu1.getOptionCount(), 5)
-
-
-if __name__ == '__main__':
-    unittest.main()

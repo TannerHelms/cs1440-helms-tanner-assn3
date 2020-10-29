@@ -19,6 +19,10 @@ def checkForValidNumbers(actual: [], size: int, maxValue: int) -> bool:
     return True
 
 
+if __name__ == '__main__':
+    unittest.main()
+
+
 class TestNumberSet(unittest.TestCase):
     def test_number_set(self):
         @dataclass
@@ -46,16 +50,17 @@ class TestNumberSet(unittest.TestCase):
             TestCase(
                 name="4",
                 size=10,
-                maxValue=50,
+                maxValue=100,
             )
         ]
 
         for case in testcases:
+            print(f"Testing case {case.name}:", end='')
             actual = NumberSet.NumberSet(case.size, case.maxValue).GetValues()
-            print(actual)
             self.assertTrue(
                 checkForValidNumbers(actual, case.size, case.maxValue),
                 "failed test {} not a valid NumberSet: {}".format(
                     case.name, "", actual
                 )
             )
+            print(" Pass")

@@ -8,7 +8,6 @@ class UserInterface:
         pass
 
     def run(self):
-        """Present the main menu to the user and repeatedly prompt for a valid command"""
         print(f"{Fore.LIGHTCYAN_EX}{Style.BRIGHT}Welcome to the Bingo! Deck Generator\n")
 
         print(
@@ -45,16 +44,16 @@ class UserInterface:
                 cardSize = 0
         self.__cardSize = cardSize
         # ---------------------- Max Number------------------
-        print(f"{Fore.GREEN}Enter max number [50 - 100]")
+        print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
         try:
             maxNumber = int(input())
         except:
             maxNumber = 0
-        while not maxNumber in range(50, 101):
+        while not maxNumber in range(cardSize**2 * 2, cardSize**2*4 + 1):
             print()
-            print(f"{Fore.RED}Please input a number in the range [50 - 100]")
+            print(f"{Fore.RED}Please input a number in the range [{cardSize**2 * 2} - {cardSize**2*4}]")
             print()
-            print(f"{Fore.GREEN}Enter max number [50 - 100]")
+            print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
             try:
                 maxNumber = int(input())
             except:
@@ -82,7 +81,6 @@ class UserInterface:
         self.__deckMenu()
 
     def __deckMenu(self):
-        """Present the deck menu to user until a valid selection is chosen"""
         menu = Menu.Menu("Deck")
         menu.addOption("P", "Print a card to the screen")
         menu.addOption("D", "Display the whole deck to the screen")
@@ -108,9 +106,15 @@ class UserInterface:
             try:
                 tmpVar = int(input())
                 if tmpVar not in range(minV, maxV + 1):
+                    print()
+                    print(f"{Fore.RED}Please enter a number [{minV} - {maxV}]{Fore.GREEN}")
+                    print()
                     continue
                 usrInput = tmpVar
             except:
+                print()
+                print(f"{Fore.RED}Please enter a number [{minV} - {maxV}]{Fore.GREEN}")
+                print()
                 continue
         return usrInput
 

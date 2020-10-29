@@ -1,23 +1,52 @@
 import unittest
-import Card
-import NumberSet
+from dataclasses import dataclass
+
+from Card import Card
+from NumberSet import NumberSet
 
 
-class TestCard(unittest.TestCase):
-    def setUp(self):
-        self.card = Card.Card(0, 3, NumberSet.NumberSet(18))
-        self.card1 = Card.Card(0, 0, NumberSet.NumberSet(0))
-
-    def test_getSize(self):
-        self.assertEqual(self.card.getSize(), 3)
-        self.assertEqual(self.card1.getSize(), 0)
-
-    def test_getID(self):
-        self.assertIsNotNone(self.card)
-        self.assertIsNotNone(self.card1)
-        self.assertEqual(self.card.getId(), 0)
-        self.assertEqual(self.card1.getId(), 0)
+def generateNumberSet(size: int, maxValue: int) -> NumberSet:
+    return NumberSet(size, maxValue)
 
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TestCard(unittest.TestCase):
+    def test_card(self):
+        @dataclass
+        class TestCase:
+            id: int
+            size: int
+            maxValue: int
+            numberSet: []
+
+        testcases = [
+            TestCase(
+                id=1,
+                size=5,
+                maxValue=25,
+                numberSet=generateNumberSet(5, 25).GetValues()
+            ),
+            TestCase(
+                id=5,
+                size=10,
+                maxValue=100,
+                numberSet=generateNumberSet(10, 100).GetValues()
+            ),
+            TestCase(
+                id=20,
+                size=30,
+                maxValue=900,
+                numberSet=generateNumberSet(30, 900).GetValues()
+            ),
+
+        ]
+
+        for case in testcases:
+            print(f"Testing case {case.id}:", end='')
+            card = Card(case.id, case.size, case.numberSet)
+            self.assertEqual(case.size, card.getSize())
+            self.assertEqual(case.id, card.id)
+            print(" Pass")

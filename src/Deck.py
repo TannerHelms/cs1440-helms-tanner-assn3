@@ -14,6 +14,9 @@ class Deck:
         self.populateDeck()
         pass
 
+    def getDeck(self):
+        return self.__deck
+
     def populateDeck(self):
         for i in range(1, self.__deckSize + 1):
             self.__deck[i] = Card.Card(i, self.__cardSize, self.__numberSet.GetValues().copy())
@@ -26,11 +29,6 @@ class Deck:
         return self.__deck.get(cardId)
 
     def print(self, file=sys.stdout, idx=None):
-        """void function: Print cards from the Deck
-
-        If an index is given, print only that card.
-        Otherwise, print each card in the Deck
-        """
         if idx is None:
             for idx in range(1, self.__deckSize + 1):
                 c = self.getCard(idx)

@@ -10,11 +10,6 @@ class NumberSet:
         self.__numberSet = []
         self.__index = 0
         self.populate()
-        # populateArr = Process(target=self.populate, name='Process_populate')
-        # populateArr.start()
-        # populateArr.join(timeout=1)
-        # if populateArr.exitcode is None:
-        #     self.timeoutPopulate()
         pass
 
     def timeoutPopulate(self):

@@ -24,7 +24,7 @@ def printValue(value: str, file):
     if value == "FREE!":
         print(f"|{Fore.BLUE}{value}{Fore.RED}", end='')
         return
-    print(f"|{Fore.BLUE}{value}{Fore.RED}  ", end='')
+    print(f"| {Fore.BLUE}{value}{Fore.RED} ", end='')
 
 
 class Card:
