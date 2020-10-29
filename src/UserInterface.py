@@ -1,6 +1,12 @@
 import Deck
 import Menu
+import os
 from colorama import Fore, Style, init
+
+if os.name == "nt":
+    os.system("cls")
+else:
+    os.system("clear")
 
 
 class UserInterface:
