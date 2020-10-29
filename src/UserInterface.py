@@ -1,6 +1,8 @@
 import Deck
 import Menu
-from colorama import init, Fore, Style
+from colorama import Fore, Style, init
+
+init(convert=True)
 
 
 class UserInterface:
@@ -8,6 +10,7 @@ class UserInterface:
         pass
 
     def run(self):
+        init()
         print(f"{Fore.LIGHTCYAN_EX}{Style.BRIGHT}Welcome to the Bingo! Deck Generator\n")
 
         print(
@@ -44,16 +47,16 @@ class UserInterface:
                 cardSize = 0
         self.__cardSize = cardSize
         # ---------------------- Max Number------------------
-        print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
+        print(f"{Fore.GREEN}Enter max number [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
         try:
             maxNumber = int(input())
         except:
             maxNumber = 0
-        while not maxNumber in range(cardSize**2 * 2, cardSize**2*4 + 1):
+        while not maxNumber in range(cardSize ** 2 * 2, cardSize ** 2 * 4 + 1):
             print()
-            print(f"{Fore.RED}Please input a number in the range [{cardSize**2 * 2} - {cardSize**2*4}]")
+            print(f"{Fore.RED}Please input a number in the range [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
             print()
-            print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
+            print(f"{Fore.GREEN}Enter max number [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
             try:
                 maxNumber = int(input())
             except:
