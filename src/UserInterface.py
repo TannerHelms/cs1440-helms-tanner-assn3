@@ -1,22 +1,6 @@
-import os
-
-try:
-    import Deck
-except:
-    os.system('python -m pip install Deck')
-    import Deck
-
-    pass
-try:
-    import Menu
-except:
-    os.system('python -m pip install Menu')
-    import Menu
-try:
-    from colorama import Fore, Style, init
-except:
-    os.system('python -m pip install colorama')
-    from colorama import Fore, Style, init
+import Deck
+import Menu
+from colorama import init, Fore, Style
 
 
 class UserInterface:
@@ -25,10 +9,6 @@ class UserInterface:
 
     def run(self):
         init()
-        if os.name == "nt":
-            os.system("cls")
-        else:
-            os.system("clear")
         print(f"{Fore.LIGHTCYAN_EX}{Style.BRIGHT}Welcome to the Bingo! Deck Generator\n")
 
         print(
@@ -63,19 +43,18 @@ class UserInterface:
                 cardSize = int(input())
             except:
                 cardSize = 0
-                pass
         self.__cardSize = cardSize
         # ---------------------- Max Number------------------
-        print(f"{Fore.GREEN}Enter max number [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
+        print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
         try:
             maxNumber = int(input())
         except:
             maxNumber = 0
-        while not maxNumber in range(cardSize ** 2 * 2, cardSize ** 2 * 4 + 1):
+        while not maxNumber in range(cardSize**2 * 2, cardSize**2*4 + 1):
             print()
-            print(f"{Fore.RED}Please input a number in the range [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
+            print(f"{Fore.RED}Please input a number in the range [{cardSize**2 * 2} - {cardSize**2*4}]")
             print()
-            print(f"{Fore.GREEN}Enter max number [{cardSize ** 2 * 2} - {cardSize ** 2 * 4}]")
+            print(f"{Fore.GREEN}Enter max number [{cardSize**2 * 2} - {cardSize**2*4}]")
             try:
                 maxNumber = int(input())
             except:
