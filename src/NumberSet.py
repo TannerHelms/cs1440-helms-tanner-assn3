@@ -1,6 +1,6 @@
 from random import shuffle
 from random import randint
-from colorama import Fore
+
 
 
 class NumberSet:
@@ -28,7 +28,7 @@ class NumberSet:
             self.__numberSet.append(ranNum)
 
         if len(self.__numberSet) < self.__size ** 2:
-            print(f"{Fore.RED}This Bingo Set will contain duplicate numbers as the\n"
+            print(f"This Bingo Set will contain duplicate numbers as the\n"
                   f"card size is {self.__size} ({self.__size ** 2} numbers total) and the max\n"
                   f"value is {self.__maxValue}")
 
