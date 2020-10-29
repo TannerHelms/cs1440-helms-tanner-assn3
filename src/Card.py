@@ -1,5 +1,4 @@
 import sys
-from colorama import Fore, init
 
 
 def printValue(value: str, file):
@@ -16,15 +15,15 @@ def printValue(value: str, file):
         print(f"|{value}  ", end='')
         return
     if len(value) == 1:
-        print(f"|  {Fore.BLUE}{value}{Fore.RED}  ", end='')
+        print(f"|  {value}  ", end='')
         return
     if len(value) == 2:
-        print(f"| {Fore.BLUE}{value}{Fore.RED}  ", end='')
+        print(f"| {value}  ", end='')
         return
     if value == "FREE!":
-        print(f"|{Fore.BLUE}{value}{Fore.RED}", end='')
+        print(f"|{value}", end='')
         return
-    print(f"| {Fore.BLUE}{value}{Fore.RED} ", end='')
+    print(f"| {value} ", end='')
 
 
 class Card:
@@ -59,9 +58,8 @@ class Card:
                 print("|")
             self.printHeader()
             sys.stdout = sys.__stdout__
-            init()
             return
-        print(f"{Fore.WHITE}Card #{self.id}{Fore.RED}")
+        print(f"Card #{self.id}")
         arrIndex = 0
         for i in range(0, self.cardSize):
             self.printHeader()
