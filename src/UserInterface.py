@@ -3,14 +3,17 @@ try:
     import Deck
 except:
     os.system('python -m pip install Deck')
+    import Deck
 try:
     import Menu
 except:
     os.system('python -m pip install Menu')
+    import Menu
 try:
     from colorama import Fore, Style, init
 except:
     os.system('python -m pip install colorama')
+    from colorama import Fore, Style, init
 
 init(convert=True)
 
