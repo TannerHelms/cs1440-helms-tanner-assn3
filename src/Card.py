@@ -1,5 +1,5 @@
 import sys
-from colorama import Fore, deinit, reinit
+from colorama import Fore, init
 
 
 def printValue(value: str, file):
@@ -47,7 +47,6 @@ class Card:
     def print(self, file=sys.stdout):
         if not file.name == "<stdout>":
             sys.stdout = file
-            deinit()
             print(f"Card #{self.id}")
             arrIndex = 0
             for i in range(0, self.cardSize):
@@ -60,7 +59,7 @@ class Card:
                 print("|")
             self.printHeader()
             sys.stdout = sys.__stdout__
-            reinit()
+            init()
             return
         print(f"{Fore.WHITE}Card #{self.id}{Fore.RED}")
         arrIndex = 0
