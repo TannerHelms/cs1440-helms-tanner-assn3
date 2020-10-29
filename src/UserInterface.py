@@ -1,6 +1,17 @@
-import Deck
-import Menu
+import os
 from colorama import Fore, Style, init
+try:
+    import Deck
+except:
+    os.system('python -m pip install Deck')
+try:
+    import Menu
+except:
+    os.system('python -m pip install Menu')
+try:
+    from colorama import Fore, Style, init
+except:
+    os.system('python -m pip install colorama')
 
 init(convert=True)
 
