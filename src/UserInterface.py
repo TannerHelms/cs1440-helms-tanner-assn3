@@ -1,5 +1,6 @@
 import Deck
 import Menu
+from colorama import init, Fore, Style
 
 
 class UserInterface:
@@ -8,7 +9,12 @@ class UserInterface:
 
     def run(self):
         """Present the main menu to the user and repeatedly prompt for a valid command"""
-        print("Welcome to the Bingo! Deck Generator\n")
+        print(f"{Fore.LIGHTCYAN_EX}{Style.BRIGHT}Welcome to the Bingo! Deck Generator\n")
+
+        print(
+            f"Different Colors indicate different prompts:\n{Fore.LIGHTCYAN_EX}      * Cyan:   Menu\n{Fore.GREEN}      "
+            f"* Green:  Asking for User Input\n{Fore.RED}      * Red:    Error{Fore.LIGHTCYAN_EX}")
+
         menu = Menu.Menu("Main")
         menu.addOption("C", "Create a new deck")
 
@@ -22,24 +28,54 @@ class UserInterface:
                 keepGoing = False
 
     def __createDeck(self):
-        # TODO: Get the user to specify the card size, max number, and number of cards
-        print("Enter card size [3 - 15]")
-        cardSize = int(input())
-        while not cardSize in range(3, 15):
-            print(f"{cardSize} is not between [3 - 15]\n Please Re Enter a valid number:")
+        # ---------------------- Card Size------------------
+        print(f"{Fore.GREEN}Enter card size [3 - 15]")
+        try:
             cardSize = int(input())
+        except:
+            cardSize = 0
+        while not cardSize in range(3, 16):
+            print()
+            print(f"{Fore.RED}Please input a number in the range [3 - 15]")
+            print()
+            print(f"{Fore.GREEN}Enter card size [3 - 15]")
+            try:
+                cardSize = int(input())
+            except:
+                cardSize = 0
         self.__cardSize = cardSize
-        print("Enter max number [50 - 100]")
-        maxNumber = int(input())
-        while not maxNumber in range(50, 100):
-            print(f"{maxNumber} is not between [50 - 100]\n Please Re Enter a valid number:")
+        # ---------------------- Max Number------------------
+        print(f"{Fore.GREEN}Enter max number [50 - 100]")
+        try:
             maxNumber = int(input())
+        except:
+            maxNumber = 0
+        while not maxNumber in range(50, 101):
+            print()
+            print(f"{Fore.RED}Please input a number in the range [50 - 100]")
+            print()
+            print(f"{Fore.GREEN}Enter max number [50 - 100]")
+            try:
+                maxNumber = int(input())
+            except:
+                maxNumber = 0
         self.__maxNumber = maxNumber
-        print("Enter number of cards [3 - 10000]")
-        deckSize = int(input())
-        while not deckSize in range(3, 10000):
-            print(f"{cardSize} is not between [3 - 10000]\n Please Re Enter a valid number:")
+        # ---------------------- Deck Size------------------
+        print(f"{Fore.GREEN}Enter number of cards [3 - 10000]")
+        try:
             deckSize = int(input())
+        except:
+            deckSize = 0
+        while not deckSize in range(3, 10001):
+            print()
+            print(f"{Fore.RED}Please input a number in the range [3 - 10000]")
+            print()
+            print(f"{Fore.GREEN}Enter number of cards [3 - 10000]")
+            try:
+                deckSize = int(input())
+            except:
+                deckSize = 0
+        print(f"{Fore.LIGHTCYAN_EX}")
         self.deckSize = deckSize
 
         self.__m_currentDeck = Deck.Deck(self.__cardSize, self.deckSize, self.__maxNumber)
@@ -66,8 +102,17 @@ class UserInterface:
                 keepGoing = False
 
     def __getNumberInput(self, printST, minV, maxV):
-        print(f"{printST} [{minV} - {maxV}]")
-        return int(input())
+        usrInput = 0
+        while usrInput == 0:
+            print(f"{printST} [{minV} - {maxV}]")
+            try:
+                tmpVar = int(input())
+                if tmpVar not in range(minV, maxV + 1):
+                    continue
+                usrInput = tmpVar
+            except:
+                continue
+        return usrInput
 
     def __printCard(self):
         """Command to print a single card"""

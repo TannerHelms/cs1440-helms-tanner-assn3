@@ -1,4 +1,5 @@
 import MenuOption
+from colorama import Fore
 
 
 class Menu:
@@ -45,7 +46,7 @@ class Menu:
         while keepGoing:
             optionList = ''
 
-            print()
+            print(f"{Fore.LIGHTCYAN_EX}")
             print(self.getHeader(), "menu:")
 
             for i in range(self.getOptionCount()):
@@ -58,8 +59,12 @@ class Menu:
             print("X - Exit")
             optionList += "X"
 
-            print(f"\nEnter a {self.getHeader()} command ({optionList})")
+            print(f"{Fore.GREEN}\nEnter a {self.getHeader()} command ({optionList})")
             command = input()
-            keepGoing = not self.__isValidCommand(command)
+            valid = self.__isValidCommand(command)
+            if not valid:
+                print()
+                print(f"{Fore.RED}Invalid Menu Command {command}")
+            keepGoing = not valid
 
         return command

@@ -1,16 +1,30 @@
 import sys
-from NumberSet import NumberSet
+from colorama import Fore, deinit, reinit
 
 
-def printValue(value: str):
+def printValue(value: str, file):
+    if not file.name == "<stdout>":
+        if len(value) == 1:
+            print(f"|  {value}  ", end='')
+            return
+        if len(value) == 2:
+            print(f"| {value}  ", end='')
+            return
+        if value == "FREE!":
+            print(f"|{value}", end='')
+            return
+        print(f"|{value}  ", end='')
+        return
     if len(value) == 1:
-        print(f"|  {value}  ", end='')
+        print(f"|  {Fore.BLUE}{value}{Fore.RED}  ", end='')
         return
     if len(value) == 2:
-        print(f"| {value}  ", end='')
+        print(f"| {Fore.BLUE}{value}{Fore.RED}  ", end='')
         return
-    print(f"|{value}", end='')
-
+    if value == "FREE!":
+        print(f"|{Fore.BLUE}{value}{Fore.RED}", end='')
+        return
+    print(f"|{Fore.BLUE}{value}{Fore.RED}  ", end='')
 
 
 class Card:
@@ -31,18 +45,34 @@ class Card:
         pass
 
     def print(self, file=sys.stdout):
-        print(f"Card #{self.id}")
+        if not file.name == "<stdout>":
+            sys.stdout = file
+            deinit()
+            print(f"Card #{self.id}")
+            arrIndex = 0
+            for i in range(0, self.cardSize):
+                self.printHeader()
+                printValue(str(self.numberSet[arrIndex]), file)
+                arrIndex += 1
+                while not arrIndex % self.cardSize == 0 or arrIndex == 0:
+                    printValue(str(self.numberSet[arrIndex]), file)
+                    arrIndex += 1
+                print("|")
+            self.printHeader()
+            sys.stdout = sys.__stdout__
+            reinit()
+            return
+        print(f"{Fore.WHITE}Card #{self.id}{Fore.RED}")
         arrIndex = 0
         for i in range(0, self.cardSize):
             self.printHeader()
-            printValue(str(self.numberSet[arrIndex]))
+            printValue(str(self.numberSet[arrIndex]), file)
             arrIndex += 1
             while not arrIndex % self.cardSize == 0 or arrIndex == 0:
-                printValue(str(self.numberSet[arrIndex]))
+                printValue(str(self.numberSet[arrIndex]), file)
                 arrIndex += 1
             print("|")
         self.printHeader()
-
         pass
 
     def printHeader(self):
